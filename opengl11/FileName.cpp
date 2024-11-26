@@ -51,9 +51,23 @@ bool firstMouse = true;
 GLfloat deltaTime = 0.0f;
 GLfloat lastFrame = 0.0f;
 
+void compareVertices(const float* cubeVertices, int cubeCount, const float* skyboxVertices, int skyboxCount) {
+    std::cout << "Cube Vertices (Position Only):" << std::endl;
+    for (int i = 0; i < cubeCount; i += 6) {
+        std::cout << "Pos: (" << cubeVertices[i] << ", " << cubeVertices[i + 1] << ", " << cubeVertices[i + 2] << ")"
+            << " Normal: (" << cubeVertices[i + 3] << ", " << cubeVertices[i + 4] << ", " << cubeVertices[i + 5] << ")" << std::endl;
+    }
+
+    std::cout << "\nSkybox Vertices:" << std::endl;
+    for (int i = 0; i < skyboxCount; i += 3) {
+        std::cout << "Pos: (" << skyboxVertices[i] << ", " << skyboxVertices[i + 1] << ", " << skyboxVertices[i + 2] << ")" << std::endl;
+    }
+}
+
 // The MAIN function, from here we start our application and run our Game loop
 int main()
 {
+    
     // Init GLFW
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -90,48 +104,48 @@ int main()
 #pragma region "object_initialization"
     // Set the object data (buffers, vertex attributes)
     float cubeVertices[] = {
-        // positions          // texture Coords
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-         0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+        // positions          // normals
+        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+         0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+         0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+         0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+         0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+         0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
 
-        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+        -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+        -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
 
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-         0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+         0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+         0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+         0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+         0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
 
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-         0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,  0.0f,
+         0.5f, -0.5f, -0.5f,  0.0f, 1.0f,  0.0f,
+         0.5f, -0.5f,  0.5f,  0.0f, 1.0f,  0.0f,
+         0.5f, -0.5f,  0.5f,  0.0f, 1.0f,  0.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 1.0f,  0.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,  0.0f,
 
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+        -0.5f,  0.5f, -0.5f,  0.0f,  -1.0f,  0.0f,
+         0.5f,  0.5f, -0.5f,  0.0f,  -1.0f,  0.0f,
+         0.5f,  0.5f,  0.5f,  0.0f,  -1.0f,  0.0f,
+         0.5f,  0.5f,  0.5f,  0.0f,  -1.0f,  0.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f,  -1.0f,  0.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f,  -1.0f,  0.0f
     };
     float skyboxVertices[] = {
         // Positions          
@@ -177,7 +191,7 @@ int main()
         -10.0f, -10.0f,  10.0f,
          10.0f, -10.0f,  10.0f
     };
-
+    compareVertices(cubeVertices, sizeof(cubeVertices) / sizeof(float), skyboxVertices, sizeof(skyboxVertices) / sizeof(float));
 #pragma endregion
 
     // Load textures
@@ -198,10 +212,11 @@ int main()
     glBindVertexArray(cubeVAO);
     glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)0);
     glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+    
     glBindVertexArray(0);
 
     GLuint skyboxVAO, skyboxVBO;
@@ -215,11 +230,21 @@ int main()
     glBindVertexArray(0);
     // 定义多个盒子的位置
     glm::vec3 boxPositions[] = {
-        glm::vec3(0.0f, 0.0f, -2.0f),
-        glm::vec3(2.0f, 0.0f, -3.0f),
-        glm::vec3(-2.0f, 1.0f, -4.0f),
-        glm::vec3(1.0f, -1.0f, -5.0f),
-        glm::vec3(-1.5f, 0.5f, -6.0f)
+       //glm::vec3(0.0f, 0.0f, -2.0f),
+       //glm::vec3(2.0f, 0.0f, -3.0f),
+       //glm::vec3(-2.0f, 1.0f, -4.0f),
+       //glm::vec3(1.0f, -1.0f, -5.0f),
+       //glm::vec3(-1.5f, 0.5f, -6.0f),
+
+
+        glm::vec3(0.0f, 0.0f, 0.0f),
+        glm::vec3(0.0f, 0.0f, 1.0f),
+        glm::vec3(0.0f, 1.0f, 0.0f),
+        glm::vec3(0.0f, 1.0f, 1.0f),
+        glm::vec3(1.0f, 0.0f, 0.0f),
+        glm::vec3(1.0f, 0.0f, 1.0f),
+        glm::vec3(1.0f, 1.0f, 0.0f),
+        glm::vec3(1.0f, 1.0f, 1.0f),
     };
 
     // 渲染循环
@@ -239,6 +264,7 @@ int main()
 
         // 设置视图和投影矩阵
         shader.use();
+        shader.setVec3("cameraPos", camera.Position);
         glm::mat4 view = camera.GetViewMatrix();
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)screenWidth / (float)screenHeight, 0.1f, 5000.0f);
         shader.setMat4("view", view);
@@ -247,9 +273,10 @@ int main()
         // 绘制多个盒子
         glBindVertexArray(cubeVAO);
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, cubeTexture);
+        glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+        //glDrawArrays(GL_TRIANGLES, 0, 36);
 
-        for (unsigned int i = 0; i < 5; i++) {
+        for (unsigned int i = 0; i < 8; i++) {
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::translate(model, boxPositions[i]); // 设置位置
             model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f)); // 缩小盒子

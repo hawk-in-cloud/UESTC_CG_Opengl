@@ -1,10 +1,20 @@
 ﻿  FileName.cpp
-D:\CG\opengl2\opengl11\opengl11\opengl11\FileName.cpp(228,30): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
-D:\CG\opengl2\opengl11\opengl11\opengl11\FileName.cpp(376,17): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
-D:\CG\opengl2\opengl11\opengl11\opengl11\FileName.cpp(377,17): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
-D:\CG\opengl2\opengl11\opengl11\opengl11\FileName.cpp(381,21): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
-D:\CG\opengl2\opengl11\opengl11\opengl11\FileName.cpp(382,21): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
-D:\CG\opengl2\opengl11\opengl11\opengl11\FileName.cpp(384,13): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
-D:\CG\opengl2\opengl11\opengl11\opengl11\FileName.cpp(385,13): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
-D:\CG\opengl2\opengl11\opengl11\opengl11\FileName.cpp(392,31): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+D:\CG\opengl2\opengl11\opengl11\opengl11\FileName.cpp(253,30): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
+D:\CG\opengl2\opengl11\opengl11\opengl11\FileName.cpp(403,17): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
+D:\CG\opengl2\opengl11\opengl11\opengl11\FileName.cpp(404,17): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
+D:\CG\opengl2\opengl11\opengl11\opengl11\FileName.cpp(408,21): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
+D:\CG\opengl2\opengl11\opengl11\opengl11\FileName.cpp(409,21): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
+D:\CG\opengl2\opengl11\opengl11\opengl11\FileName.cpp(411,13): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
+D:\CG\opengl2\opengl11\opengl11\opengl11\FileName.cpp(412,13): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
+D:\CG\opengl2\opengl11\opengl11\opengl11\FileName.cpp(419,31): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+LINK : warning LNK4098: 默认库“LIBCMT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
+LINK : warning LNK4098: 默认库“MSVCRT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
+LINK : warning LNK4217: 符号“___glewBindBuffer”(在“ glew32s.lib(glew.obj)”中定义)已由“Model.obj”(函数“"public: __thiscall Model::Mesh::Mesh(class std::vector<struct Model::Vertex,class std::allocator<struct Model::Vertex> > const &,class std::vector<unsigned int,class std::allocator<unsigned int> > const &)" (??0Mesh@Model@@QAE@ABV?$vector@UVertex@Model@@V?$allocator@UVertex@Model@@@std@@@std@@ABV?$vector@IV?$allocator@I@std@@@3@@Z)”中)导入
+LINK : warning LNK4217: 符号“___glewBufferData”(在“ glew32s.lib(glew.obj)”中定义)已由“Model.obj”(函数“"public: __thiscall Model::Mesh::Mesh(class std::vector<struct Model::Vertex,class std::allocator<struct Model::Vertex> > const &,class std::vector<unsigned int,class std::allocator<unsigned int> > const &)" (??0Mesh@Model@@QAE@ABV?$vector@UVertex@Model@@V?$allocator@UVertex@Model@@@std@@@std@@ABV?$vector@IV?$allocator@I@std@@@3@@Z)”中)导入
+LINK : warning LNK4217: 符号“___glewGenBuffers”(在“ glew32s.lib(glew.obj)”中定义)已由“Model.obj”(函数“"public: __thiscall Model::Mesh::Mesh(class std::vector<struct Model::Vertex,class std::allocator<struct Model::Vertex> > const &,class std::vector<unsigned int,class std::allocator<unsigned int> > const &)" (??0Mesh@Model@@QAE@ABV?$vector@UVertex@Model@@V?$allocator@UVertex@Model@@@std@@@std@@ABV?$vector@IV?$allocator@I@std@@@3@@Z)”中)导入
+LINK : warning LNK4217: 符号“___glewEnableVertexAttribArray”(在“ glew32s.lib(glew.obj)”中定义)已由“Model.obj”(函数“"public: __thiscall Model::Mesh::Mesh(class std::vector<struct Model::Vertex,class std::allocator<struct Model::Vertex> > const &,class std::vector<unsigned int,class std::allocator<unsigned int> > const &)" (??0Mesh@Model@@QAE@ABV?$vector@UVertex@Model@@V?$allocator@UVertex@Model@@@std@@@std@@ABV?$vector@IV?$allocator@I@std@@@3@@Z)”中)导入
+LINK : warning LNK4217: 符号“___glewVertexAttribPointer”(在“ glew32s.lib(glew.obj)”中定义)已由“Model.obj”(函数“"public: __thiscall Model::Mesh::Mesh(class std::vector<struct Model::Vertex,class std::allocator<struct Model::Vertex> > const &,class std::vector<unsigned int,class std::allocator<unsigned int> > const &)" (??0Mesh@Model@@QAE@ABV?$vector@UVertex@Model@@V?$allocator@UVertex@Model@@@std@@@std@@ABV?$vector@IV?$allocator@I@std@@@3@@Z)”中)导入
+LINK : warning LNK4217: 符号“___glewBindVertexArray”(在“ glew32s.lib(glew.obj)”中定义)已由“Model.obj”(函数“"public: __thiscall Model::Mesh::Mesh(class std::vector<struct Model::Vertex,class std::allocator<struct Model::Vertex> > const &,class std::vector<unsigned int,class std::allocator<unsigned int> > const &)" (??0Mesh@Model@@QAE@ABV?$vector@UVertex@Model@@V?$allocator@UVertex@Model@@@std@@@std@@ABV?$vector@IV?$allocator@I@std@@@3@@Z)”中)导入
+LINK : warning LNK4217: 符号“___glewGenVertexArrays”(在“ glew32s.lib(glew.obj)”中定义)已由“Model.obj”(函数“"public: __thiscall Model::Mesh::Mesh(class std::vector<struct Model::Vertex,class std::allocator<struct Model::Vertex> > const &,class std::vector<unsigned int,class std::allocator<unsigned int> > const &)" (??0Mesh@Model@@QAE@ABV?$vector@UVertex@Model@@V?$allocator@UVertex@Model@@@std@@@std@@ABV?$vector@IV?$allocator@I@std@@@3@@Z)”中)导入
+glew32s.lib(glew.obj) : warning LNK4099: 未找到 PDB“”(使用“glew32s.lib(glew.obj)”或在“”中寻找)；正在链接对象，如同没有调试信息一样
   opengl11.vcxproj -> D:\CG\opengl2\opengl11\opengl11\Debug\opengl11.exe
