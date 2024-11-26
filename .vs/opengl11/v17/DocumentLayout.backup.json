@@ -1,0 +1,45 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\CG\\opengl11\\opengl11\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8353FF9A-02C7-4B12-AA93-FDAF10B7BB47}|opengl11\\opengl11.vcxproj|D:\\CG\\opengl11\\opengl11\\opengl11\\FileName.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8353FF9A-02C7-4B12-AA93-FDAF10B7BB47}|opengl11\\opengl11.vcxproj|solutionrelative:opengl11\\FileName.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FileName.cpp",
+              "DocumentMoniker": "D:\\CG\\opengl11\\opengl11\\opengl11\\FileName.cpp",
+              "RelativeDocumentMoniker": "opengl11\\FileName.cpp",
+              "ToolTip": "D:\\CG\\opengl11\\opengl11\\opengl11\\FileName.cpp",
+              "RelativeToolTip": "opengl11\\FileName.cpp",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-11-26T02:29:17.626Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

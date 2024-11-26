@@ -89,8 +89,8 @@ int main()
 
 #pragma region "object_initialization"
     // Set the object data (buffers, vertex attributes)
-    GLfloat cubeVertices[] = {
-        // Positions          // Texture Coords
+    float cubeVertices[] = {
+        // positions          // texture Coords
         -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
          0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
          0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
@@ -133,50 +133,51 @@ int main()
         -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
         -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
     };
-    GLfloat skyboxVertices[] = {
+    float skyboxVertices[] = {
         // Positions          
-        -1.0f,  1.0f, -1.0f,
-        -1.0f, -1.0f, -1.0f,
-         1.0f, -1.0f, -1.0f,
-         1.0f, -1.0f, -1.0f,
-         1.0f,  1.0f, -1.0f,
-        -1.0f,  1.0f, -1.0f,
+        -10.0f,  10.0f, -10.0f,
+        -10.0f, -10.0f, -10.0f,
+         10.0f, -10.0f, -10.0f,
+         10.0f, -10.0f, -10.0f,
+         10.0f,  10.0f, -10.0f,
+        -10.0f,  10.0f, -10.0f,
 
-        -1.0f, -1.0f,  1.0f,
-        -1.0f, -1.0f, -1.0f,
-        -1.0f,  1.0f, -1.0f,
-        -1.0f,  1.0f, -1.0f,
-        -1.0f,  1.0f,  1.0f,
-        -1.0f, -1.0f,  1.0f,
+        -10.0f, -10.0f,  10.0f,
+        -10.0f, -10.0f, -10.0f,
+        -10.0f,  10.0f, -10.0f,
+        -10.0f,  10.0f, -10.0f,
+        -10.0f,  10.0f,  10.0f,
+        -10.0f, -10.0f,  10.0f,
 
-         1.0f, -1.0f, -1.0f,
-         1.0f, -1.0f,  1.0f,
-         1.0f,  1.0f,  1.0f,
-         1.0f,  1.0f,  1.0f,
-         1.0f,  1.0f, -1.0f,
-         1.0f, -1.0f, -1.0f,
+         10.0f, -10.0f, -10.0f,
+         10.0f, -10.0f,  10.0f,
+         10.0f,  10.0f,  10.0f,
+         10.0f,  10.0f,  10.0f,
+         10.0f,  10.0f, -10.0f,
+         10.0f, -10.0f, -10.0f,
 
-        -1.0f, -1.0f,  1.0f,
-        -1.0f,  1.0f,  1.0f,
-         1.0f,  1.0f,  1.0f,
-         1.0f,  1.0f,  1.0f,
-         1.0f, -1.0f,  1.0f,
-        -1.0f, -1.0f,  1.0f,
+        -10.0f, -10.0f,  10.0f,
+        -10.0f,  10.0f,  10.0f,
+         10.0f,  10.0f,  10.0f,
+         10.0f,  10.0f,  10.0f,
+         10.0f, -10.0f,  10.0f,
+        -10.0f, -10.0f,  10.0f,
 
-        -1.0f,  1.0f, -1.0f,
-         1.0f,  1.0f, -1.0f,
-         1.0f,  1.0f,  1.0f,
-         1.0f,  1.0f,  1.0f,
-        -1.0f,  1.0f,  1.0f,
-        -1.0f,  1.0f, -1.0f,
+        -10.0f,  10.0f, -10.0f,
+         10.0f,  10.0f, -10.0f,
+         10.0f,  10.0f,  10.0f,
+         10.0f,  10.0f,  10.0f,
+        -10.0f,  10.0f,  10.0f,
+        -10.0f,  10.0f, -10.0f,
 
-        -1.0f, -1.0f, -1.0f,
-        -1.0f, -1.0f,  1.0f,
-         1.0f, -1.0f, -1.0f,
-         1.0f, -1.0f, -1.0f,
-        -1.0f, -1.0f,  1.0f,
-         1.0f, -1.0f,  1.0f
+        -10.0f, -10.0f, -10.0f,
+        -10.0f, -10.0f,  10.0f,
+         10.0f, -10.0f, -10.0f,
+         10.0f, -10.0f, -10.0f,
+        -10.0f, -10.0f,  10.0f,
+         10.0f, -10.0f,  10.0f
     };
+
 #pragma endregion
 
     // Load textures
@@ -188,6 +189,8 @@ int main()
         "skybox/front.jpg",
         "skybox/back.jpg"
         });
+    // Load textures
+    GLuint cubeTexture = loadTexture("textures/container.jpg");
 
     GLuint cubeVAO, cubeVBO;
     glGenVertexArrays(1, &cubeVAO);
@@ -210,47 +213,65 @@ int main()
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
     glEnableVertexAttribArray(0);
     glBindVertexArray(0);
+    // 定义多个盒子的位置
+    glm::vec3 boxPositions[] = {
+        glm::vec3(0.0f, 0.0f, -2.0f),
+        glm::vec3(2.0f, 0.0f, -3.0f),
+        glm::vec3(-2.0f, 1.0f, -4.0f),
+        glm::vec3(1.0f, -1.0f, -5.0f),
+        glm::vec3(-1.5f, 0.5f, -6.0f)
+    };
 
-    // Game loop
-    while (!glfwWindowShouldClose(window))
-    {
-        // Calculate delta time
+    // 渲染循环
+    while (!glfwWindowShouldClose(window)) {
+        // 时间控制
         GLfloat currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
-        // Poll events and move the camera
+        // 输入处理
         glfwPollEvents();
         Do_Movement();
 
-        // Clear the colorbuffer
+        // 清屏
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // Render the cube (3D object)
-        shader.Use();
-        glm::mat4 model;
+        // 设置视图和投影矩阵
+        shader.use();
         glm::mat4 view = camera.GetViewMatrix();
-        glm::mat4 projection = glm::perspective(camera.Zoom, (GLfloat)screenWidth / (GLfloat)screenHeight, 0.1f, 100.0f);
-        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
-        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)screenWidth / (float)screenHeight, 0.1f, 5000.0f);
+        shader.setMat4("view", view);
+        shader.setMat4("projection", projection);
 
+        // 绘制多个盒子
         glBindVertexArray(cubeVAO);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, cubeTexture);
 
-        // Render the skybox (background)
-        glDepthFunc(GL_LEQUAL); // Change depth function so depth test passes when values are equal to depth buffer's content
-        skyboxShader.Use();
-        view = glm::mat4(glm::mat3(camera.GetViewMatrix()));  // Remove translation part of view matrix
-        glUniformMatrix4fv(glGetUniformLocation(skyboxShader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
-        glUniformMatrix4fv(glGetUniformLocation(skyboxShader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+        for (unsigned int i = 0; i < 5; i++) {
+            glm::mat4 model = glm::mat4(1.0f);
+            model = glm::translate(model, boxPositions[i]); // 设置位置
+            model = glm::scale(model, glm::vec3(0.5f, 0.5f, 0.5f)); // 缩小盒子
+            shader.setMat4("model", model);
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
+
+        glBindVertexArray(0);
+
+        // 绘制天空盒
+        glDepthFunc(GL_LEQUAL);
+        skyboxShader.use();
+        view = glm::mat4(glm::mat3(camera.GetViewMatrix())); // 移除平移分量
+        skyboxShader.setMat4("view", view);
+        skyboxShader.setMat4("projection", projection);
 
         glBindVertexArray(skyboxVAO);
         glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
         glDrawArrays(GL_TRIANGLES, 0, 36);
-        glDepthFunc(GL_LESS); // Reset depth function back to default
+        glDepthFunc(GL_LESS);
 
-        // Swap the buffers
+        // 交换缓冲区
         glfwSwapBuffers(window);
     }
 
@@ -318,7 +339,6 @@ GLuint loadCubemap(vector<const GLchar*> faces)
 // Moves/alters the camera positions based on user input
 void Do_Movement()
 {
-    // Camera controls
     if (keys[GLFW_KEY_W])
         camera.ProcessKeyboard(FORWARD, deltaTime);
     if (keys[GLFW_KEY_S])
@@ -327,7 +347,15 @@ void Do_Movement()
         camera.ProcessKeyboard(LEFT, deltaTime);
     if (keys[GLFW_KEY_D])
         camera.ProcessKeyboard(RIGHT, deltaTime);
+
+    // 限制相机的移动范围
+    glm::vec3 pos = camera.Position;
+    pos.x = glm::clamp(pos.x, -10.0f, 10.0f); // 限制 x 方向
+    pos.y = glm::clamp(pos.y, -5.0f, 5.0f);   // 限制 y 方向
+    pos.z = glm::clamp(pos.z, -15.0f, 0.0f);  // 限制 z 方向
+    camera.Position = pos;
 }
+
 
 // Is called whenever a key is pressed/released via GLFW
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
